@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Video Editor</title>
+</head>
+<body>
+    <h1>Basic Video Editor</h1>
+    <video id="video" controls>
+        <source src="your-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br><br>
+    <button id="trimButton">Trim Video</button>
+    <button id="addTextButton">Add Text</button>
+    <button id="downloadButton">Download Edited Video</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/ffmpeg.js/ffmpeg.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const trimButton = document.getElementById('trimButton');
+        const addTextButton = document.getElementById('addTextButton');
+        const downloadButton = document.getElementById('downloadButton');
+
+        trimButton.addEventListener('click', async () => {
+            const ffmpeg = await createFFmpeg({ log: true });
+            await ffmpeg.load();
+            ffmpeg.FS('writeFile', 'input.mp4', await fetchFile('your-video.mp4'));
+            await ffmpeg.run('-i', 'input.mp4', '-ss', '00:00:10', '-to', '00:00:20', '-c', 'copy', 'output.mp4');
+            const data = ffmpeg.FS('readFile', 'output.mp4');
+            const videoBlob = new Blob([data.buffer], { type: 'video/mp4' });
+            video.src = URL.createObjectURL(videoBlob);
+        });
+
+        addTextButton.addEventListener('click', async () => {
+            const ffmpeg = await createFFmpeg({ log: true });
+            await ffmpeg.load();
+            ffmpeg.FS('writeFile', 'input.mp4', await fetchFile('your-video.mp4'));
+            await ffmpeg.run('-i', 'input.mp4', '-vf', "drawtext=text='Hello World':fontcolor=white:fontsize=24:x=10:y=H-th-10", 'output.mp4');
+            const data = ffmpeg.FS('readFile', 'output.mp4');
+            const videoBlob = new Blob([data.buffer], { type: 'video/mp4' });
+            video.src = URL.createObjectURL(videoBlob);
+        });
+
+        downloadButton.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = video.src;
+            link.download = 'edited-video.mp4';
+            link.click();
+        });
+
+        async function fetchFile(url) {
+            const response = await fetch(url);
+            const buffer = await response.arrayBuffer();
+            return new Uint8Array(buffer);
+        }
+    </script>
+</body>
+</html>
