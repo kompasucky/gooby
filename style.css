@@ -1,87 +1,47 @@
-/* styles.css */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1e1e1e;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
     color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
-}
-
-#app {
-    display: grid;
-    grid-template-columns: 250px auto 250px;
-    grid-template-rows: 60px auto 150px;
-    grid-template-areas: 
-        "header header header"
-        "media content effects"
-        "media timeline effects";
-    height: 100%;
 }
 
 header {
-    grid-area: header;
-    background-color: #333;
+    background-color: #202020;
+    padding: 10px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid #444;
-}
-
-header h1 {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #00b7ff;
-    margin-right: 20px;
 }
 
 nav button {
-    background-color: #444;
+    background-color: #333;
+    color: #fff;
     border: none;
-    color: white;
-    padding: 8px 12px;
-    margin-right: 10px;
+    padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-right: 5px;
 }
 
-nav button:hover {
-    background-color: #555;
+#timeline {
+    flex: 1;
+    background-color: #1c1c1c;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #333;
 }
 
-.media-browser {
-    grid-area: media;
-    background-color: #2e2e2e;
-    padding: 10px;
-    border-right: 1px solid #444;
-    overflow-y: auto;
-}
-
-.content {
-    grid-area: content;
+#preview {
+    flex: 2;
     background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.effect-controls {
-    grid-area: effects;
-    background-color: #2e2e2e;
-    padding: 10px;
-    border-left: 1px solid #444;
-}
-
-.timeline {
-    grid-area: timeline;
-    background-color: #333;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid #444;
-    overflow-x: scroll;
+    padding: 20px;
+    border-top: 1px solid #333;
 }
