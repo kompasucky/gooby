@@ -10,15 +10,21 @@
     <div id="app">
         <header>
             <h1>SevenZero Editor</h1>
+            <nav>
+                <button>File</button>
+                <button>Edit</button>
+                <button>View</button>
+                <button>Add Media</button>
+                <button>Add Audio</button>
+            </nav>
         </header>
 
-        <aside class="sidebar">
-            <!-- Layers and Effects Panel -->
-            <h2>Layers</h2>
-            <ul id="layers">
-                <li>Video Layer 1</li>
-                <li>Audio Layer 1</li>
-            </ul>
+        <aside class="media-browser">
+            <h2>Media Browser</h2>
+            <div id="media-items">
+                <!-- Dynamically loaded media items will appear here -->
+            </div>
+            <input type="file" id="media-input" accept="video/*,audio/*,image/*" multiple style="display:none;">
         </aside>
 
         <main class="content">
@@ -26,9 +32,16 @@
             <video id="preview" controls></video>
         </main>
 
+        <div class="effect-controls">
+            <h2>Effect Controls</h2>
+            <!-- Effect control sliders and inputs go here -->
+        </div>
+
         <footer class="timeline">
-            <!-- Timeline and Keyframes -->
             <h2>Timeline</h2>
+            <div id="timeline">
+                <!-- Timeline and Keyframes will be managed here -->
+            </div>
         </footer>
     </div>
 
