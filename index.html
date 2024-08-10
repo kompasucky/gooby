@@ -5,44 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SevenZero Editor</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="editor">
         <header>
             <h1>SevenZero Editor</h1>
             <nav>
-                <button>File</button>
-                <button>Edit</button>
-                <button>View</button>
-                <button>Add Media</button>
-                <button>Add Audio</button>
+                <button id="add-media">Add Media</button>
+                <button id="add-audio">Add Audio</button>
+                <button id="export">Export</button>
             </nav>
         </header>
 
-        <aside class="media-browser">
-            <h2>Media Browser</h2>
-            <div id="media-items">
-                <!-- Dynamically loaded media items will appear here -->
-            </div>
-            <input type="file" id="media-input" accept="video/*,audio/*,image/*" multiple style="display:none;">
-        </aside>
+        <section id="timeline">
+            <!-- Timeline where videos, images, and audio tracks will be placed -->
+        </section>
 
-        <main class="content">
-            <!-- Video Preview -->
-            <video id="preview" controls></video>
-        </main>
+        <section id="preview">
+            <video id="video-player" class="video-js vjs-default-skin" controls preload="auto"></video>
+        </section>
 
-        <div class="effect-controls">
-            <h2>Effect Controls</h2>
-            <!-- Effect control sliders and inputs go here -->
-        </div>
-
-        <footer class="timeline">
-            <h2>Timeline</h2>
-            <div id="timeline">
-                <!-- Timeline and Keyframes will be managed here -->
-            </div>
-        </footer>
+        <input type="file" id="media-input" accept="video/*,audio/*" style="display:none;">
     </div>
 
     <script src="scripts.js"></script>
