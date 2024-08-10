@@ -13,12 +13,12 @@ body {
 
 #app {
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 250px auto 250px;
     grid-template-rows: 60px auto 150px;
     grid-template-areas: 
-        "header header"
-        "sidebar content"
-        "sidebar timeline";
+        "header header header"
+        "media content effects"
+        "media timeline effects";
     height: 100%;
 }
 
@@ -35,13 +35,29 @@ header h1 {
     font-size: 1.5em;
     font-weight: bold;
     color: #00b7ff;
+    margin-right: 20px;
 }
 
-.sidebar {
-    grid-area: sidebar;
+nav button {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #555;
+}
+
+.media-browser {
+    grid-area: media;
     background-color: #2e2e2e;
     padding: 10px;
     border-right: 1px solid #444;
+    overflow-y: auto;
 }
 
 .content {
@@ -52,6 +68,13 @@ header h1 {
     align-items: center;
 }
 
+.effect-controls {
+    grid-area: effects;
+    background-color: #2e2e2e;
+    padding: 10px;
+    border-left: 1px solid #444;
+}
+
 .timeline {
     grid-area: timeline;
     background-color: #333;
@@ -60,22 +83,5 @@ header h1 {
     align-items: center;
     justify-content: center;
     border-top: 1px solid #444;
-}
-
-button {
-    background-color: #00b7ff;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #007b99;
+    overflow-x: scroll;
 }
